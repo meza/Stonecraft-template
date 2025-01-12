@@ -23,7 +23,7 @@ public class ExampleMod {*/
 
 /*? if fabric {*/
 public class ExampleMod implements ModInitializer {
-/*? }*/
+/*?}*/
 
     /*? if forge {*/
     /*public ExampleMod(final FMLJavaModLoadingContext context) {}*/

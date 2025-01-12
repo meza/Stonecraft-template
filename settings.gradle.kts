@@ -1,8 +1,13 @@
 pluginManagement {
     repositories {
+        mavenLocal()
         mavenCentral()
         gradlePluginPortal()
         maven("https://maven.kikugie.dev/releases")
+        maven("https://maven.fabricmc.net/")
+        maven("https://maven.architectury.dev")
+        maven("https://maven.minecraftforge.net")
+        maven("https://maven.neoforged.net/releases/")
     }
 }
 plugins {
