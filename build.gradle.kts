@@ -15,6 +15,7 @@ modSettings {
     }
 }
 
+
 // Example of overriding publishing settings
 publishMods {
     modrinth {

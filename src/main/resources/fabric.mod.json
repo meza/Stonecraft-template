@@ -11,7 +11,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "${group}.${id}.ExampleMod"
+      "${group}.ExampleMod"
     ]
   },
   "depends": {
