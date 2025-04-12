@@ -2,7 +2,6 @@ import gg.meza.stonecraft.mod
 
 plugins {
     id("gg.meza.stonecraft")
-    id("me.modmuss50.mod-publish-plugin")
 }
 
 modSettings {
