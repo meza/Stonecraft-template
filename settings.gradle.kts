@@ -25,9 +25,9 @@ stonecutter {
             for (it in loaders) vers("$version-$it", version)
         }
 
-        mc("1.21.5", "fabric", "forge", "neoforge")
+        mc("1.21.4", "fabric", "neoforge")
 
-        vcsVersion = "1.21.5-fabric"
+        vcsVersion = "1.21.4-fabric"
     }
     create(rootProject)
 }
