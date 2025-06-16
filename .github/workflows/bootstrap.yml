@@ -1,5 +1,6 @@
 name: 🪄 Initialise Stonecraft template
 
+
 on:
   workflow_dispatch:
     inputs:
@@ -33,20 +34,25 @@ on:
       discord_avatar:
         description: 'Avatar-image URL for release bot'
         required: true
+      personal_token:
+        description: 'GitHub personal access token with workflow permissions'
+        required: true
 
 concurrency:
-    group: ${{ github.workflow }}-${{ github.event.inputs.mod_id }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.inputs.mod_id }}
+  cancel-in-progress: true
 
 jobs:
   bootstrap:
     runs-on: ubuntu-latest
     permissions:
       contents: write        # we need to commit back to the repo
-
+      actions: write
     steps:
       - name: ⬇️ Check out code
         uses: actions/checkout@v4
+        with:
+          token: '${{ github.event.inputs.personal_token }}'
 
       - name: 🛠️ Run bootstrap script
         run: |
@@ -67,7 +73,6 @@ jobs:
           git config user.name  "Template Init Bot"
           git config user.email "github-actions@users.noreply.github.com"
           git rm .github/workflows/bootstrap.yml
-          git rm scripts/bootstrap.sh
           git add -A
           git commit -m "chore: bootstrap template"
           git push

@@ -15,6 +15,7 @@ Set up a new multi-loader, multi-version mod project with Stonecraft.
 ## Bootstrap with GitHub Actions
 
 The template comes with the `.github/workflows/bootstrap.yml` file that automates the above steps for you.
+Just naviate to the Actions tab of your repository and run the `🪄 Initialise Stonecraft template` workflow manually.
 
 ## Environment Variables
 
