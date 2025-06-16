@@ -1,0 +1,73 @@
+name: 🪄 Initialise Stonecraft template
+
+on:
+  workflow_dispatch:
+    inputs:
+      mod_group:
+        description: 'Java package group (e.g. com.example)'
+        required: true
+      mod_name:
+        description: 'Human-friendly mod name (e.g. AwesomeBlocks)'
+        required: true
+      mod_id:
+        description: 'Internal mod id (lower-case, no spaces, e.g. awesomeblocks)'
+        required: true
+      mod_slug:
+        description: 'URL slug used in links (e.g. awesomeblocks)'
+        required: true
+      java_version:
+        description: 'Java version used to compile the mod'
+        default: '21'
+        required: true
+      include_datagen:
+        description: 'Include the DataGen step in CI?'
+        type: boolean
+        default: true
+      include_gametests:
+        description: 'Include the GameTests step in CI?'
+        type: boolean
+        default: true
+      discord_user:
+        description: 'Discord username for release bot'
+        required: true
+      discord_avatar:
+        description: 'Avatar-image URL for release bot'
+        required: true
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.inputs.mod_id }}
+    cancel-in-progress: true
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # we need to commit back to the repo
+
+    steps:
+      - name: ⬇️ Check out code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Run bootstrap script
+        run: |
+          chmod +x scripts/bootstrap.sh
+          scripts/bootstrap.sh \
+            --group          "${{ github.event.inputs.mod_group }}" \
+            --name           "${{ github.event.inputs.mod_name }}" \
+            --id             "${{ github.event.inputs.mod_id }}" \
+            --slug           "${{ github.event.inputs.mod_slug }}" \
+            --java           "${{ github.event.inputs.java_version }}" \
+            --datagen        "${{ github.event.inputs.include_datagen }}" \
+            --gametests      "${{ github.event.inputs.include_gametests }}" \
+            --discord-user   "${{ github.event.inputs.discord_user }}" \
+            --discord-avatar "${{ github.event.inputs.discord_avatar }}"
+
+      - name: 📦 Commit rewritten template and remove this workflow
+        run: |
+          git config user.name  "Template Init Bot"
+          git config user.email "github-actions@users.noreply.github.com"
+          git rm .github/workflows/bootstrap.yml
+          git rm scripts/bootstrap.sh
+          git add -A
+          git commit -m "chore: bootstrap template"
+          git push

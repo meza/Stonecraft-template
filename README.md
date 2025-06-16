@@ -12,6 +12,9 @@ Set up a new multi-loader, multi-version mod project with Stonecraft.
 - [ ] If you're not running gametests (which you should), then remove all references to `chiseledGameTest` in the `.github/workflows/build.yml` file
 - [ ] Set up the environment variables in GitHub
 
+## Bootstrap with GitHub Actions
+
+The template comes with the `.github/workflows/bootstrap.yml` file that automates the above steps for you.
 
 ## Environment Variables
 
