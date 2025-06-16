@@ -88,7 +88,7 @@ mkdir -p "$NEW_PATH"
 
 # Move anything not already under NEW_PATH into NEW_PATH
 for dir in "$SRC_ROOT"/*; do
-  [[ "$dir" == "$NEW_PATH" ]] && continue
+  [[ "$dir" == "$NEW_PATH" || "$NEW_PATH" == "$dir"* ]] && continue
   [[ -d "$dir" ]] || continue
   echo "↪  Moving $dir → $NEW_PATH"
   git mv "$dir" "$NEW_PATH" 2>/dev/null || mv "$dir" "$NEW_PATH"
