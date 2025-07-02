@@ -50,6 +50,7 @@ jobs:
             @semantic-release/exec
             conventional-changelog-conventionalcommits 
             semantic-release-discord-notifier 
+            semantic-release-export-data
 
       - name: "ℹ️ Needs Release?"
         run: echo "Needs release published? ${{ steps.get-next-version.outputs.new_release_published == 'true' }}"
@@ -76,7 +77,8 @@ jobs:
             @semantic-release/changelog
             @semantic-release/exec
             conventional-changelog-conventionalcommits 
-            semantic-release-discord-notifier   
+            semantic-release-discord-notifier
+            semantic-release-export-data
 
       - name: "🧪 Run Dev Build"
         if: ${{ steps.get-next-version.outputs.new_release_published != 'true' }}
