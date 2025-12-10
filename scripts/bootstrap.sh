@@ -137,8 +137,10 @@ find src/main/java -type f \( -name 'ExampleMod.java' -o -name 'ExampleMod.kt' \
   git mv "$FILE" "$NEW_FILE" 2>/dev/null || mv "$FILE" "$NEW_FILE"
   # package line
   sed -i "1s/^package .*/package $GROUP;/" "$NEW_FILE"
-  # class/object declaration – first occurrence only
-  sed -i "0,/ExampleMod/{s/ExampleMod/$CLASS_NAME/}" "$NEW_FILE"
+  # Replace all occurrences of ExampleMod class name with the new class name
+  sed -i "s/ExampleMod/$CLASS_NAME/g" "$NEW_FILE"
+  # Replace mod ID in @Mod annotation
+  sed -i "s/\"examplemod\"/\"$MOD_ID\"/g" "$NEW_FILE"
 done
 
 ###############################################################################
