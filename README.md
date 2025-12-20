@@ -24,6 +24,7 @@ Just naviate to the Actions tab of your repository and run the `🪄 Initialise 
 - `MODRINTH_TOKEN` **Secret** - Your Modrinth API token
 - `CURSEFORGE_ID` **Variable** - Your Curseforge mod ID
 - `CURSEFORGE_TOKEN` **Secret** - Your Curseforge API token
+- `CURSEFORGE_SLUG` **Secret** - Your Curseforge mod slug
 - `DISCORD_WEBHOOK` **Secret** - Your Discord webhook URL to use for notifications. This needs to be a bot token, not a user token.
 
 ## GitHub Token How-To
