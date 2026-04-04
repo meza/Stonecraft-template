@@ -141,6 +141,8 @@ find src/main/java -type f \( -name 'ExampleMod.java' -o -name 'ExampleMod.kt' \
   sed -i "s/ExampleMod/$CLASS_NAME/g" "$NEW_FILE"
   # Replace mod ID in @Mod annotation
   sed -i "s/\"examplemod\"/\"$MOD_ID\"/g" "$NEW_FILE"
+  # Replace ExampleMod in fabric.mod.json with the new class name
+  sed -i "s/ExampleMod/$CLASS_NAME/g" "src/main/resources/fabric.mod.json"
 done
 
 ###############################################################################
